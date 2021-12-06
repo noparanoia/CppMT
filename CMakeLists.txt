@@ -4,7 +4,7 @@ cmake_minimum_required (VERSION 2.6)
 
 option(BUILD_TRAX_CLIENT "Build the trax client." OFF)
 
-find_package(OpenCV REQUIRED)
+find_package(OpenCV REQUIRED PATHS /usr/local/Cellar/opencv/4.5.3_3 NO_DEFAULT_PATH)
 
 if(NOT CMAKE_BUILD_TYPE)
     set(CMAKE_BUILD_TYPE Release CACHE STRING "Build type" FORCE)
