@@ -281,7 +281,7 @@ int main(int argc, char **argv)
         //Read first image
         Mat im0 = imread(files[0]);
         Mat im0_gray;
-        cvtColor(im0, im0_gray, CV_BGR2GRAY);
+        cvtColor(im0, im0_gray, cv::COLOR_BGR2GRAY);
 
         //Initialize cmt
         cmt.initialize(im0_gray, rect);
@@ -296,7 +296,7 @@ int main(int argc, char **argv)
             FILE_LOG(logINFO) << "Processing frame " << i << "/" << files.size();
             Mat im = imread(files[i]);
             Mat im_gray;
-            cvtColor(im, im_gray, CV_BGR2GRAY);
+            cvtColor(im, im_gray, cv::COLOR_BGR2GRAY);
             cmt.processFrame(im_gray);
             if (verbose_flag)
             {
@@ -333,15 +333,15 @@ int main(int argc, char **argv)
 
         if (skip_frames > 0)
         {
-          cap.set(CV_CAP_PROP_POS_FRAMES, skip_frames);
+          cap.set(cv::CAP_PROP_POS_FRAMES, skip_frames);
         }
 
         if (skip_msecs > 0)
         {
-          cap.set(CV_CAP_PROP_POS_MSEC, skip_msecs);
+          cap.set(cv::CAP_PROP_POS_MSEC, skip_msecs);
 
           // Now which frame are we on?
-          skip_frames = (int) cap.get(CV_CAP_PROP_POS_FRAMES);
+          skip_frames = (int) cap.get(cv::CAP_PROP_POS_FRAMES);
         }
 
         show_preview = false;
@@ -385,7 +385,7 @@ int main(int argc, char **argv)
     //Convert im0 to grayscale
     Mat im0_gray;
     if (im0.channels() > 1) {
-        cvtColor(im0, im0_gray, CV_BGR2GRAY);
+        cvtColor(im0, im0_gray, cv::COLOR_BGR2GRAY);
     } else {
         im0_gray = im0;
     }
@@ -400,7 +400,7 @@ int main(int argc, char **argv)
 
     if (output_flag)
     {
-        int msecs = (int) cap.get(CV_CAP_PROP_POS_MSEC);
+        int msecs = (int) cap.get(cv::CAP_PROP_POS_MSEC);
 
         output_file.open(output_path.c_str());
         output_file << OUT_FILE_COL_HEADERS << endl;
@@ -424,7 +424,7 @@ int main(int argc, char **argv)
 
         Mat im_gray;
         if (im.channels() > 1) {
-            cvtColor(im, im_gray, CV_BGR2GRAY);
+            cvtColor(im, im_gray, cv::COLOR_BGR2GRAY);
         } else {
             im_gray = im;
         }
@@ -435,7 +435,7 @@ int main(int argc, char **argv)
         //Output.
         if (output_flag)
         {
-            int msecs = (int) cap.get(CV_CAP_PROP_POS_MSEC);
+            int msecs = (int) cap.get(cv::CAP_PROP_POS_MSEC);
             output_file << frame << "," << msecs << ",";
             output_file << cmt.points_active.size() << ",";
             output_file << write_rotated_rect(cmt.bb_rot) << endl;

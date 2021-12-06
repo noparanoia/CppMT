@@ -46,13 +46,13 @@ static void onMouse(int event, int x, int y, int flags, void *param)
     Mat im_draw;
     im_select.copyTo(im_draw);
 
-    if(event == CV_EVENT_LBUTTONUP && !tl_set)
+    if(event == cv::EVENT_LBUTTONUP && !tl_set)
     {
         tl = Point(x,y);
         tl_set = true;
     }
 
-    else if(event == CV_EVENT_LBUTTONUP && tl_set)
+    else if(event == cv::EVENT_LBUTTONUP && tl_set)
     {
         br = Point(x,y);
         br_set = true;
@@ -85,7 +85,7 @@ Rect getRect(const Mat im, const string win_name)
 
     while(!br_set)
     {
-        cvWaitKey(10);
+        cv::waitKey(10);
     }
 
     setMouseCallback(win_name, NULL);
